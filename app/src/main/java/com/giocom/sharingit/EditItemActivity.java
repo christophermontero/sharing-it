@@ -31,11 +31,7 @@ public class EditItemActivity extends AppCompatActivity{
     private ImageView photo;
 
     private EditText title;
-    private EditText maker;
     private EditText description;
-    private EditText length;
-    private EditText width;
-    private EditText height;
     private Spinner borrower_spinner;
     private TextView  borrower_tv;
     private Switch status;
@@ -47,11 +43,7 @@ public class EditItemActivity extends AppCompatActivity{
         setContentView(R.layout.activity_edit_item);
 
         title = (EditText) findViewById(R.id.title);
-        maker = (EditText) findViewById(R.id.maker);
         description = (EditText) findViewById(R.id.description);
-        length = (EditText) findViewById(R.id.length);
-        width = (EditText) findViewById(R.id.width);
-        height = (EditText) findViewById(R.id.height);
         borrower_spinner = (Spinner) findViewById(R.id.borrower_spinner);
         borrower_tv = (TextView) findViewById(R.id.borrower_tv);
         photo = (ImageView) findViewById(R.id.image_view);
@@ -70,7 +62,6 @@ public class EditItemActivity extends AppCompatActivity{
 
 
         title.setText(item.getTitle());
-        maker.setText(item.getMaker());
         description.setText(item.getDescription());
 
         String status_str = item.getStatus();
@@ -88,6 +79,7 @@ public class EditItemActivity extends AppCompatActivity{
             photo.setImageResource(android.R.drawable.ic_menu_gallery);
         }
     }
+
 
     public void addPhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -123,19 +115,10 @@ public class EditItemActivity extends AppCompatActivity{
     public void saveItem(View view) {
 
         String title_str = title.getText().toString();
-        String maker_str = maker.getText().toString();
         String description_str = description.getText().toString();
-        String length_str = length.getText().toString();
-        String width_str = width.getText().toString();
-        String height_str = height.getText().toString();
 
         if (title_str.equals("")) {
             title.setError("Empty field!");
-            return;
-        }
-
-        if (maker_str.equals("")) {
-            maker.setError("Empty field!");
             return;
         }
 
@@ -144,25 +127,10 @@ public class EditItemActivity extends AppCompatActivity{
             return;
         }
 
-        if (length_str.equals("")) {
-            length.setError("Empty field!");
-            return;
-        }
-
-        if (width_str.equals("")) {
-            width.setError("Empty field!");
-            return;
-        }
-
-        if (height_str.equals("")) {
-            height.setError("Empty field!");
-            return;
-        }
-
         String id = item.getId(); // Reuse the item id
         item_list.deleteItem(item);
 
-        Item updated_item = new Item(title_str, maker_str, description_str, image, id);
+        Item updated_item = new Item(title_str, description_str, image, id);
 
         boolean checked = status.isChecked();
         if (!checked) {

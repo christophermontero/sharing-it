@@ -13,17 +13,15 @@ import java.util.UUID;
 public class Item {
 
     private String title;
-    private String maker;
     private String description;
     private String status;
     protected transient Bitmap image;
     protected String image_base64;
     private String id;
+    private Contact borrower;
 
-    public Item(String title, String maker, String description, Bitmap image,
-                String id) {
+    public Item(String title, String description, Bitmap image, String id) {
         this.title = title;
-        this.maker = maker;
         this.description = description;
         this.status = "Available";
         addImage(image);
@@ -56,14 +54,6 @@ public class Item {
         return title;
     }
 
-    public void setMaker(String maker) {
-        this.maker = maker;
-    }
-
-    public String getMaker() {
-        return maker;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -78,6 +68,14 @@ public class Item {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setBorrower(Contact borrower) {
+        this.borrower = borrower;
+    }
+
+    public Contact getBorrower() {
+        return borrower;
     }
 
     public void addImage(Bitmap new_image){
