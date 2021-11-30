@@ -2,7 +2,7 @@ package com.giocom.sharingit;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,10 +37,10 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         // The "Item" in the method name is a coincidence...
         Item item = getItem(position);
 
-        String title = "Title: " + item.getTitle();
-        String description = "Description: " + item.getDescription();
+        String title = "Título: " + item.getTitle();
+        String description = "Descripción: " + item.getDescription();
         Bitmap thumbnail = item.getImage();
-        String status = "Status: " + item.getStatus();
+        String status = "Estado: " + item.getStatus();
 
         // Check if an existing view is being reused, otherwise inflate the view.
         if (convertView == null) {

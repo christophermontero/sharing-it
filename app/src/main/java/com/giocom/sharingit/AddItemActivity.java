@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -45,14 +45,13 @@ public class AddItemActivity extends AppCompatActivity {
         String title_str = title.getText().toString();
         String description_str = description.getText().toString();
 
-
         if (title_str.equals("")) {
-            title.setError("Empty field!");
+            title.setError("Campo vacío!");
             return;
         }
 
         if (description_str.equals("")) {
-            description.setError("Empty field!");
+            description.setError("Campo vacío!");
             return;
         }
 

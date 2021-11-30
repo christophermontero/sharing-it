@@ -2,7 +2,7 @@ package com.giocom.sharingit;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,7 +16,7 @@ public class EditContactActivity extends AppCompatActivity {
 
     private ContactList contact_list = new ContactList();
     private Contact contact;
-    private EditText phone;
+    private EditText email;
     private EditText username;
     private Context context;
 
@@ -34,18 +34,23 @@ public class EditContactActivity extends AppCompatActivity {
         contact = contact_list.getContact(pos);
 
         username = (EditText) findViewById(R.id.username);
-        phone = (EditText) findViewById(R.id.phone);
+        email = (EditText) findViewById(R.id.email);
 
         username.setText(contact.getUsername());
-        phone.setText(contact.getPhone());
+        email.setText(contact.getEmail());
     }
 
     public void saveContact(View view) {
 
-        String phone_str = phone.getText().toString();
+        String email_str = email.getText().toString();
 
-        if (phone_str.equals("")) {
-            phone.setError("Empty field!");
+        if (email_str.equals("")) {
+            email.setError("Campo vacío!");
+            return;
+        }
+
+        if (!email_str.contains("@")){
+            email.setError("Must be an email address!");
             return;
         }
 
@@ -57,11 +62,11 @@ public class EditContactActivity extends AppCompatActivity {
         // Check that username is unique AND username is changed (Note: if username was not changed
         // then this should be fine, because it was already unique.)
         if (!contact_list.isUsernameAvailable(username_str) && !(contact.getUsername().equals(username_str))) {
-            username.setError("Username already taken!");
+            username.setError("Nombre existente!");
             return;
         }
 
-        Contact updated_contact = new Contact(username_str, phone_str, id);
+        Contact updated_contact = new Contact(username_str, email_str, id);
 
         contact_list.addContact(updated_contact);
         contact_list.saveContacts(context);

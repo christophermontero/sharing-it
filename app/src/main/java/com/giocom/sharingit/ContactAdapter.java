@@ -31,8 +31,8 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         // (where "contacts" is a parameter in the ContactAdapter creator as seen above ^^)
         Contact contact = getItem(position);
 
-        String username = "Username: " + contact.getUsername();
-        String email = "Email: " + contact.getPhone();
+        String username = "Nombre: " + contact.getUsername();
+        String email = "Correo: " + contact.getEmail();
 
         // Check if an existing view is being reused, otherwise inflate the view.
         if (convertView == null) {
@@ -40,7 +40,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         }
 
         TextView username_tv = (TextView) convertView.findViewById(R.id.username_tv);
-        TextView email_tv = (TextView) convertView.findViewById(R.id.phone_tv);
+        TextView email_tv = (TextView) convertView.findViewById(R.id.email_tv);
         ImageView photo = (ImageView) convertView.findViewById(R.id.contacts_image_view);
 
         photo.setImageResource(android.R.drawable.ic_menu_gallery);

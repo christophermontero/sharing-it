@@ -5,12 +5,12 @@ import java.util.UUID;
 
 public class Contact {
     private String username;
-    private String phone;
+    private String email;
     private String id;
 
-    Contact(String username, String phone, String id) {
+    Contact(String username, String email, String id) {
         this.username = username;
-        this.phone = phone;
+        this.email = email;
 
         if (id == null){
             setId();
@@ -39,11 +39,11 @@ public class Contact {
         this.username = username;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.sharingapp;
+package com.giocom.sharingit;
 
 import org.junit.Test;
 

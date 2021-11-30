@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,6 +25,8 @@ public class EditItemActivity extends AppCompatActivity{
     private ItemList item_list = new ItemList();
     private Item item;
     private Context context;
+
+    private ContactList contact_list = new ContactList();
 
     private Bitmap image;
     private int REQUEST_CODE = 1;
@@ -54,18 +56,28 @@ public class EditItemActivity extends AppCompatActivity{
 
         context = getApplicationContext();
         item_list.loadItems(context);
+        contact_list.loadContacts(context);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, contact_list.getAllUsernames());
+        borrower_spinner.setAdapter(adapter);
 
         Intent intent = getIntent();   // Get intent from ItemsFragment
         int pos = intent.getIntExtra("position", 0);
 
         item = item_list.getItem(pos);
 
+        Contact contact = item.getBorrower();
+        if (contact != null){
+            int contact_pos = contact_list.getIndex(contact);
+            borrower_spinner.setSelection(contact_pos);
+        }
 
         title.setText(item.getTitle());
         description.setText(item.getDescription());
 
         String status_str = item.getStatus();
-        if (status_str.equals("Borrowed")) {
+        if (status_str.equals("Prestado")) {
             status.setChecked(false);
         } else {
             borrower_tv.setVisibility(View.GONE);
@@ -79,7 +91,6 @@ public class EditItemActivity extends AppCompatActivity{
             photo.setImageResource(android.R.drawable.ic_menu_gallery);
         }
     }
-
 
     public void addPhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -117,13 +128,19 @@ public class EditItemActivity extends AppCompatActivity{
         String title_str = title.getText().toString();
         String description_str = description.getText().toString();
 
+        Contact contact = null;
+        if (!status.isChecked()) {
+            String borrower_str = borrower_spinner.getSelectedItem().toString();
+            contact = contact_list.getContactByUsername(borrower_str);
+        }
+
         if (title_str.equals("")) {
-            title.setError("Empty field!");
+            title.setError("Campo vacío!");
             return;
         }
 
         if (description_str.equals("")) {
-            description.setError("Empty field!");
+            description.setError("Campo vacío!");
             return;
         }
 
@@ -134,7 +151,8 @@ public class EditItemActivity extends AppCompatActivity{
 
         boolean checked = status.isChecked();
         if (!checked) {
-            updated_item.setStatus("Borrowed");
+            updated_item.setStatus("Prestado");
+            updated_item.setBorrower(contact);
         }
 
         item_list.addItem(updated_item);
@@ -155,8 +173,24 @@ public class EditItemActivity extends AppCompatActivity{
             // Means was previously borrowed, switch was toggled to available
             borrower_spinner.setVisibility(View.GONE);
             borrower_tv.setVisibility(View.GONE);
-            item.setStatus("Available");
+            item.setBorrower(null);
+            item.setStatus("Disponible");
 
+        } else {
+            // Means not borrowed
+            if (contact_list.getSize()==0){
+                // No contacts, need to add contacts to be able to add a borrower.
+                invisible.setEnabled(false);
+                invisible.setVisibility(View.VISIBLE);
+                invisible.requestFocus();
+                invisible.setError("No contacts available! Must add borrower to contacts.");
+                status.setChecked(true); // Set switch to available
+
+            } else {
+                // Means was previously available
+                borrower_spinner.setVisibility(View.VISIBLE);
+                borrower_tv.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

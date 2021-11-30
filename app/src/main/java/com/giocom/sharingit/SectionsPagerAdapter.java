@@ -1,8 +1,8 @@
 package com.giocom.sharingit;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -40,11 +40,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "All";
+                return "Items";
             case 1:
-                return "Available";
+                return "Disponible";
             case 2:
-                return "Borrowed";
+                return "Prestado";
         }
         return null;
     }

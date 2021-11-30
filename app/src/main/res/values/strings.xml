@@ -1,17 +1,18 @@
 <resources>
     <string name="app_name">Sharing IT</string>
-    <string name="title_hint">Title</string>
-    <string name="description_hint">Description</string>
-    <string name="save">Save</string>
+    <string name="title_hint">Título</string>
+    <string name="description_hint">Descripción</string>
+    <string name="save">Guardar</string>
     <string name="image_icon">Image Icon</string>
-    <string name="status_hint">Status</string>
-    <string name="borrower_hint">Borrower</string>
-    <string name="delete_item">Delete Item</string>
-    <string name="toggle_available">Available</string>
-    <string name="toggle_borrowed">Borrowed</string>
-    <string name="username_hint">Username</string>
-    <string name="phone_hint">Phone</string>
-    <string name="delete">Delete</string>
-    <string name="contacts">Contacts</string>
+    <string name="status_hint">Estado</string>
+    <string name="borrower_hint">Prestatario</string>
+    <string name="delete_item">Eliminar Item</string>
+    <string name="toggle_available">Disponible</string>
+    <string name="toggle_borrowed">Prestado</string>
+    <string name="username_hint">Nombre</string>
+    <string name="phone_hint">Teléfono</string>
+    <string name="email_hint">Correo</string>
+    <string name="delete">Eliminar</string>
+    <string name="contacts">Contactos</string>
 
 </resources>
