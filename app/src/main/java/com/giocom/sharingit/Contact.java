@@ -5,11 +5,13 @@ import java.util.UUID;
 
 public class Contact {
     private String username;
+    private String phone;
     private String email;
     private String id;
 
-    Contact(String username, String email, String id) {
+    Contact(String username, String phone, String email, String id) {
         this.username = username;
+        this.phone = phone;
         this.email = email;
 
         if (id == null){
@@ -37,6 +39,14 @@ public class Contact {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {

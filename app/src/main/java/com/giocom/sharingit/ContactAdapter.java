@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -32,6 +34,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         Contact contact = getItem(position);
 
         String username = "Nombre: " + contact.getUsername();
+        String phone = "Teléfono: " + contact.getPhone();
         String email = "Correo: " + contact.getEmail();
 
         // Check if an existing view is being reused, otherwise inflate the view.
@@ -40,12 +43,14 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         }
 
         TextView username_tv = (TextView) convertView.findViewById(R.id.username_tv);
+        TextView phone_tv = (TextView) convertView.findViewById(R.id.phone_tv);
         TextView email_tv = (TextView) convertView.findViewById(R.id.email_tv);
         ImageView photo = (ImageView) convertView.findViewById(R.id.contacts_image_view);
 
         photo.setImageResource(android.R.drawable.ic_menu_gallery);
 
         username_tv.setText(username);
+        phone_tv.setText(phone);
         email_tv.setText(email);
 
         return convertView;

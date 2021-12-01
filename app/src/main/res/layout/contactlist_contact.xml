@@ -30,10 +30,16 @@
 
             <TextView
                 android:id="@+id/username_tv"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/title_hint"/>
+
+            <TextView
+                android:id="@+id/phone_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_hint"/>
 
             <TextView
                 android:id="@+id/email_tv"

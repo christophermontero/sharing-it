@@ -15,6 +15,7 @@ public class AddContactActivity extends AppCompatActivity {
     private Context context;
 
     private EditText username;
+    private EditText phone;
     private EditText email;
 
     @Override
@@ -23,6 +24,7 @@ public class AddContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_contact);
 
         username = (EditText) findViewById(R.id.username);
+        phone = (EditText) findViewById(R.id.phone);
         email = (EditText) findViewById(R.id.email);
 
         context = getApplicationContext();
@@ -32,6 +34,7 @@ public class AddContactActivity extends AppCompatActivity {
     public void saveContact(View view) {
 
         String username_str = username.getText().toString();
+        String phone_str = phone.getText().toString();
         String email_str = email.getText().toString();
 
         if (username_str.equals("")) {
@@ -50,11 +53,11 @@ public class AddContactActivity extends AppCompatActivity {
         }
 
         if (!contact_list.isUsernameAvailable(username_str)){
-            username.setError("Nombre existente!");
+            username.setError("Este nombre ya existe!");
             return;
         }
 
-        Contact contact = new Contact(username_str, email_str, null);
+        Contact contact = new Contact(username_str, phone_str, email_str, null);
 
         contact_list.addContact(contact);
         contact_list.saveContacts(context);

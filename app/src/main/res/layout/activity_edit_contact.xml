@@ -32,7 +32,7 @@
             android:hint="@string/title_hint"
             android:inputType="text"
             android:textAppearance="@android:style/TextAppearance.Medium"
-            android:maxLength="24"/>
+            android:maxLength="50"/>
 
     </LinearLayout>
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
-            android:maxLength="24"
+            android:maxLength="50"
             android:textAppearance="@android:style/TextAppearance.Medium" />
 
     </LinearLayout>

@@ -51,7 +51,7 @@ public class ContactsActivity extends AppCompatActivity {
                 // Prevent contact from editing an "active" borrower.
                 if (active_borrowers_list != null) {
                     if (active_borrowers_list.hasContact(contact)) {
-                        CharSequence text = "Cannot edit or delete active borrower!";
+                        CharSequence text = "No se puede editar o borrar un prestatario activo!";
                         int duration = Toast.LENGTH_SHORT;
                         Toast.makeText(context, text, duration).show();
                         return true;
