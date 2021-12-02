@@ -2,21 +2,30 @@ package com.giocom.sharingit;
 
 import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 /**
  * Add a new contact
  */
 public class AddContactActivity extends AppCompatActivity {
 
-    private ContactList contact_list = new ContactList();
-    private Context context;
-
     private EditText username;
     private EditText phone;
     private EditText email;
+
+    private ImageView photo;
+    private Bitmap image;
+    private int REQUEST_CODE = 1;
+
+    private ContactList contact_list = new ContactList();
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +35,7 @@ public class AddContactActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         phone = (EditText) findViewById(R.id.phone);
         email = (EditText) findViewById(R.id.email);
+        photo = (ImageView) findViewById(R.id.contacts_image_view);
 
         context = getApplicationContext();
         contact_list.loadContacts(context);
@@ -57,13 +67,35 @@ public class AddContactActivity extends AppCompatActivity {
             return;
         }
 
-        Contact contact = new Contact(username_str, phone_str, email_str, null);
+        Contact contact = new Contact(username_str, phone_str, email_str, image, null);
 
         contact_list.addContact(contact);
         contact_list.saveContacts(context);
 
-        // End AddContactActivity
-        finish();
+        // End AddItemActivity
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void addPhoto(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_CODE);
+        }
+    }
+
+    public void deletePhoto(View view) {
+        image = null;
+        photo.setImageResource(android.R.drawable.ic_menu_gallery);
+    }
+
+    @Override
+    protected void onActivityResult(int request_code, int result_code, Intent intent){
+        if (request_code == REQUEST_CODE && result_code == RESULT_OK){
+            Bundle extras = intent.getExtras();
+            image = (Bitmap) extras.get("data");
+            photo.setImageBitmap(image);
+        }
     }
 }
 

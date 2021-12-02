@@ -88,6 +88,41 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/contacts_image_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:label="@string/image_icon"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp">
+
+        <ImageButton
+            android:id="@+id/add_image_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="addPhoto"
+            android:layout_gravity="center"
+            android:background="@android:drawable/ic_menu_camera" />
+
+        <ImageButton
+            android:id="@+id/cancel_image_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="deletePhoto"
+            android:layout_gravity="center"
+            android:background="@android:drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"

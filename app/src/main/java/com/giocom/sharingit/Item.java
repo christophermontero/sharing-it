@@ -20,8 +20,7 @@ public class Item {
     protected String image_base64;
     private String id;
 
-    public Item(String title, String description, Bitmap image,
-                String id) {
+    public Item(String title, String description, Bitmap image, String id) {
         this.title = title;
         this.description = description;
         this.status = "Disponible";

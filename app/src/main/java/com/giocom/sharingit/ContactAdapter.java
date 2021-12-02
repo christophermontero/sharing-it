@@ -1,6 +1,7 @@
 package com.giocom.sharingit;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         String username = "Nombre: " + contact.getUsername();
         String phone = "Teléfono: " + contact.getPhone();
         String email = "Correo: " + contact.getEmail();
+        Bitmap thumbnail = contact.getImage();
 
         // Check if an existing view is being reused, otherwise inflate the view.
         if (convertView == null) {
@@ -47,7 +49,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         TextView email_tv = (TextView) convertView.findViewById(R.id.email_tv);
         ImageView photo = (ImageView) convertView.findViewById(R.id.contacts_image_view);
 
-        photo.setImageResource(android.R.drawable.ic_menu_gallery);
+        if (thumbnail != null) {
+            photo.setImageBitmap(thumbnail);
+        } else {
+            photo.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
 
         username_tv.setText(username);
         phone_tv.setText(phone);

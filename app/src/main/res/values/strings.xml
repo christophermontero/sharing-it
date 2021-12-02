@@ -7,6 +7,7 @@
     <string name="status_hint">Estado</string>
     <string name="borrower_hint">Prestatario</string>
     <string name="delete_item">Eliminar Item</string>
+    <string name="delete_contact">Eliminar Contacto</string>
     <string name="toggle_available">Disponible</string>
     <string name="toggle_borrowed">Prestado</string>
     <string name="username_hint">Nombre</string>
